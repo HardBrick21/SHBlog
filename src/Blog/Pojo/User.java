@@ -1,4 +1,4 @@
-package Pojo;
+package Blog.Pojo;
 
 /*
 *  @Author : Houlixuan
