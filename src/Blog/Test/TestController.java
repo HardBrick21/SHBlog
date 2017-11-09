@@ -15,6 +15,11 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class TestController {
 	
+	@RequestMapping("/")
+	public String index(){
+		return "redirect:/";
+	}
+	
 	@RequestMapping("/test")
 	public void test(HttpSession session){
 		

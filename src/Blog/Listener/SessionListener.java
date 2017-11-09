@@ -8,7 +8,7 @@ package Blog.Listener;
  */
 
 
-import Blog.Log4j.TestLog4j;
+import Blog.Test.Log4j.TestLog4j;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -29,16 +29,22 @@ public class SessionListener implements HttpSessionListener, HttpSessionIdListen
 	@Override
 	public void sessionIdChanged(HttpSessionEvent httpSessionEvent, String s) {
 		logger.info(this.date()+" : Session ID" + s + "改变为 " + httpSessionEvent.getSession().getId() );
+		
+		SessionRegistry.updateSession(httpSessionEvent.getSession(), s);
 	}
 	
 	@Override
 	public void sessionCreated(HttpSessionEvent httpSessionEvent) {
 		logger.info(this.date() + ": Session  " + httpSessionEvent.getSession().getId()+ " 创建。");
+		
+		SessionRegistry.addSession(httpSessionEvent.getSession());
 	}
 	
 	@Override
 	public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
 		logger.info(this.date() + ": Session  " + httpSessionEvent.getSession().getId()+ " 销毁。");
+		
+		SessionRegistry.removeSession(httpSessionEvent.getSession());
 	}
 	
 	private SimpleDateFormat format = new SimpleDateFormat("EEE, yyy MMM d HH:mm:ss");

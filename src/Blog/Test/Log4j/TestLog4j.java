@@ -1,4 +1,4 @@
-package Blog.Log4j;
+package Blog.Test.Log4j;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
