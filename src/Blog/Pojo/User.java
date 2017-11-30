@@ -8,6 +8,8 @@ package Blog.Pojo;
  */
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class User {
@@ -20,7 +22,9 @@ public class User {
 	private String gender;
 	private String icon;
 	private int role;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date createTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 	
 	public int getUserid() {

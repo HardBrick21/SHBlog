@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Blog.Dao.ArticleDao">
+
+    <resultMap id="ArticleBean" type="Articles">
+        <id column="articleid" property="articleid" />
+        <result column="articletitle" property="articletitle" />
+        <result column="author" property="author" />
+        
+        <!-- 多对一的关系 -->
+        <!-- property: 指的是属性名称, javaType：指的是属性的类型 -->
+        
+        <association property="articletype"  javaType="articletype" >
+            <id column="typeid" property="typeid" />
+            <result column="typename" property="typename" />
+        </association>
+    </resultMap>
+    
+    <select id="listArticleByType" resultMap="ArticleBean">
+        SELECT articles.*, articletypes.* FROM articletypes LEFT JOIN articles ON articles.articletypeid = articletypes.typeid;
+    </select>
+
+    <insert id="insertArticle" parameterType="articles">
+        INSERT INTO articles (articletitle, articletypeid, author, isreprint, pubtime, updatetime, content, thumbnail, intro)
+         VALUES (#{articletitle}, #{articletypeid}, #{author}, #{isreprint}, #{pubtime}, #{updatetime}, #{content}, #{thumbnail}, #{intro})
+    </insert>
+
+    <delete id="delectArticle" parameterType="articles">
+        DELETE FROM articles WHERE articleid = #{articleid};
+    </delete>
+
+    <select id="listArticle"  resultType="articles">
+        SELECT * FROM articles ORDER BY pubtime DESC ;
+    </select>
+
+    <select id="getArticle" resultType="articles" parameterType="_int">
+        SELECT * FROM articles WHERE articleid = #{articleid};
+    </select>
+</mapper>

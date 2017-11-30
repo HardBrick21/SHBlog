@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="aliyun">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../SHBlog/lib/aliyun-sdk-oss-2.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../SHBlog/lib/jackson-annotations-2.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../SHBlog/lib/jackson-core-2.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../SHBlog/lib/jackson-databind-2.9.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

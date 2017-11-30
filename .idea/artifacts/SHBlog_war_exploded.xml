@@ -17,9 +17,13 @@
           <element id="library" level="project" name="Spring Webflow-2.4.0" />
           <element id="library" level="project" name="Spring Batch-2.2.6" />
           <element id="library" level="project" name="ValidateCode" />
-          <element id="library" level="project" name="log4j-1.2.17" />
-          <element id="library" level="project" name="jstl" />
           <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="standard" />
+          <element id="library" level="project" name="apache-log4j-2.9" />
+          <element id="library" level="project" name="Mybatis" />
+          <element id="library" level="project" name="org.thymeleaf:thymeleaf:Release" />
+          <element id="library" level="project" name="file" />
+          <element id="library" level="project" name="aliyun" />
         </element>
       </element>
     </root>

@@ -20,7 +20,7 @@ public class CodeServlet extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//设置图片的宽高  字符个数  干扰条数
+		//设置图片的 宽高  字符个数  干扰条数
 		
 		ValidateCode vc = new ValidateCode(100, 31, 4, 10);
 		

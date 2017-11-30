@@ -10,8 +10,8 @@ package Blog.Test;
 
 public class t1 {
 	public static void main(String[] args) {
-	
-	
-	
+		
+		String basepath = Thread.currentThread().getContextClassLoader().getResource("").toString();
+		System.out.println(basepath);
 	}
 }

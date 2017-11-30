@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SHBlog">
+    <output-path>$PROJECT_DIR$/../SHBlog/out/artifacts/SHBlog</output-path>
+    <root id="archive" name="SHBlog.war">
+      <element id="artifact" artifact-name="SHBlog:war exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$/../SHBlog/web" />
+    </root>
+  </artifact>
+</component>

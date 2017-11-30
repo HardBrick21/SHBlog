@@ -31,10 +31,12 @@
     <orderEntry type="library" name="Spring Webflow-2.4.0" level="project" />
     <orderEntry type="library" name="Spring Batch-2.2.6" level="project" />
     <orderEntry type="library" name="ValidateCode" level="project" />
-    <orderEntry type="library" name="log4j-1.2.17" level="project" />
-    <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="standard" level="project" />
-    <orderEntry type="library" name="lib2" level="project" />
+    <orderEntry type="library" name="apache-log4j-2.9" level="project" />
+    <orderEntry type="library" name="Mybatis" level="project" />
+    <orderEntry type="library" name="org.thymeleaf:thymeleaf:Release" level="project" />
+    <orderEntry type="library" name="file" level="project" />
+    <orderEntry type="library" name="aliyun" level="project" />
   </component>
 </module>
