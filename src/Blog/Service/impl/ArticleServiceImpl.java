@@ -48,5 +48,15 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleDao.getArticle(aid);
 	}
 	
+	@Override
+	public int getLatest() {
+		return articleDao.latestId();
+	}
+	
+	@Override
+	public int count() {
+		return articleDao.count();
+	}
+	
 	
 }

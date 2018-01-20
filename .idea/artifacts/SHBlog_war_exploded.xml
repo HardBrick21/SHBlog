@@ -24,6 +24,7 @@
           <element id="library" level="project" name="org.thymeleaf:thymeleaf:Release" />
           <element id="library" level="project" name="file" />
           <element id="library" level="project" name="aliyun" />
+          <element id="library" level="project" name="ueditor-mini" />
         </element>
       </element>
     </root>

@@ -13,271 +13,260 @@
     <schema id="7" parent="1" name="sakila"/>
     <schema id="8" parent="1" name="sys"/>
     <schema id="9" parent="1" name="world"/>
-    <table id="10" parent="2" name="articlereviews">
+    <schema id="10" parent="1" name="hrmapp"/>
+    <table id="11" parent="2" name="articlereviews">
       <Comment>文章评论</Comment>
     </table>
-    <table id="11" parent="2" name="articles">
+    <table id="12" parent="2" name="articles">
       <Comment>文章表</Comment>
     </table>
-    <table id="12" parent="2" name="articletags">
+    <table id="13" parent="2" name="articletags">
       <Comment>标签表</Comment>
     </table>
-    <table id="13" parent="2" name="articletypes">
+    <table id="14" parent="2" name="articletypes">
       <Comment>文章类型</Comment>
     </table>
-    <table id="14" parent="2" name="user">
+    <table id="15" parent="2" name="user">
       <Comment>用户表</Comment>
     </table>
-    <column id="15" parent="10" name="reviewid">
+    <column id="16" parent="11" name="reviewid">
       <Position>1</Position>
       <Comment>评论编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="16" parent="10" name="articleid">
+    <column id="17" parent="11" name="articleid">
       <Position>2</Position>
       <Comment>文章编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="10" name="reviewuserid">
+    <column id="18" parent="11" name="reviewuserid">
       <Position>3</Position>
       <Comment>评论人编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="10" name="reviewcontent">
+    <column id="19" parent="11" name="reviewcontent">
       <Position>4</Position>
       <Comment>评论内容</Comment>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="19" parent="10" name="reviewtime">
+    <column id="20" parent="11" name="reviewtime">
       <Position>5</Position>
       <Comment>评论时间</Comment>
       <DataType>datetime|0</DataType>
     </column>
-    <index id="20" parent="10" name="articlereviews_articles_articleid_fk">
+    <index id="21" parent="11" name="articlereviews_articles_articleid_fk">
       <ColNames>articleid</ColNames>
     </index>
-    <index id="21" parent="10" name="articlereviews_user_userid_fk">
+    <index id="22" parent="11" name="articlereviews_user_userid_fk">
       <ColNames>reviewuserid</ColNames>
     </index>
-    <key id="22" parent="10" name="PRIMARY">
+    <key id="23" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>reviewid</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="23" parent="10" name="articlereviews_articles_articleid_fk">
-      <ColNames>articleid</ColNames>
-      <RefSchemaName>shblog</RefSchemaName>
-      <RefTableName>articles</RefTableName>
-      <RefColNames>articleid</RefColNames>
-    </foreign-key>
-    <foreign-key id="24" parent="10" name="articlereviews_user_userid_fk">
-      <ColNames>reviewuserid</ColNames>
-      <RefSchemaName>shblog</RefSchemaName>
-      <RefTableName>user</RefTableName>
-      <RefColNames>userid</RefColNames>
-    </foreign-key>
-    <column id="25" parent="11" name="articleid">
+    <column id="24" parent="12" name="articleid">
       <Position>1</Position>
       <Comment>文章编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="26" parent="11" name="articletitle">
+    <column id="25" parent="12" name="articletitle">
       <Position>2</Position>
       <Comment>文章标题</Comment>
       <DataType>varchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="27" parent="11" name="articletypeid">
+    <column id="26" parent="12" name="articletypeid">
       <Position>3</Position>
       <Comment>文章类型编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="28" parent="11" name="articletagid">
+    <column id="27" parent="12" name="articletagid">
       <Position>4</Position>
       <Comment>文章标签编号</Comment>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="29" parent="11" name="author">
+    <column id="28" parent="12" name="author">
       <Position>5</Position>
       <Comment>作者</Comment>
       <DataType>varchar(20)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="30" parent="11" name="isreprint">
+    <column id="29" parent="12" name="isreprint">
       <Position>6</Position>
       <Comment>是否为转载 0为原创</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="31" parent="11" name="pubtime">
+    <column id="30" parent="12" name="pubtime">
       <Position>7</Position>
       <Comment>发布时间</Comment>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="32" parent="11" name="updatetime">
+    <column id="31" parent="12" name="updatetime">
       <Position>8</Position>
       <Comment>修改时间</Comment>
       <DataType>datetime|0</DataType>
     </column>
-    <column id="33" parent="11" name="content">
+    <column id="32" parent="12" name="content">
       <Position>9</Position>
       <Comment>文章内容</Comment>
       <DataType>text|0</DataType>
     </column>
-    <column id="34" parent="11" name="reviewnum">
+    <column id="33" parent="12" name="reviewnum">
       <Position>10</Position>
       <Comment>评论数</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="35" parent="11" name="likenum">
+    <column id="34" parent="12" name="likenum">
       <Position>11</Position>
       <Comment>点赞数</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="36" parent="11" name="viewnum">
+    <column id="35" parent="12" name="viewnum">
       <Position>12</Position>
       <Comment>浏览数</Comment>
       <DataType>int(11)|0</DataType>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="37" parent="11" name="thumbnail">
+    <column id="36" parent="12" name="thumbnail">
       <Position>13</Position>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="38" parent="11" name="intro">
+    <column id="37" parent="12" name="intro">
       <Position>14</Position>
       <DataType>text|0</DataType>
     </column>
-    <index id="39" parent="11" name="articles_user_userid_fk">
+    <index id="38" parent="12" name="articles_user_userid_fk">
       <ColNames>author</ColNames>
     </index>
-    <index id="40" parent="11" name="articles_articletypes_typeid_fk">
+    <index id="39" parent="12" name="articles_articletypes_typeid_fk">
       <ColNames>articletypeid</ColNames>
     </index>
-    <index id="41" parent="11" name="articles_tags_tagid_fk">
+    <index id="40" parent="12" name="articles_tags_tagid_fk">
       <ColNames>articletagid</ColNames>
     </index>
-    <key id="42" parent="11" name="PRIMARY">
+    <key id="41" parent="12" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>articleid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="43" parent="12" name="tagid">
+    <column id="42" parent="13" name="tagid">
       <Position>1</Position>
       <Comment>标签编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="44" parent="12" name="tagname">
+    <column id="43" parent="13" name="tagname">
       <Position>2</Position>
       <Comment>标签名称</Comment>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <key id="45" parent="12" name="PRIMARY">
+    <key id="44" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>tagid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="46" parent="13" name="typeid">
+    <column id="45" parent="14" name="typeid">
       <Position>1</Position>
       <Comment>类型编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="47" parent="13" name="typename">
+    <column id="46" parent="14" name="typename">
       <Position>2</Position>
       <Comment>类型名称</Comment>
       <DataType>varchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="48" parent="13" name="PRIMARY">
+    <key id="47" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>typeid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="49" parent="14" name="userid">
+    <column id="48" parent="15" name="userid">
       <Position>1</Position>
       <Comment>用户编号</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="50" parent="14" name="username">
+    <column id="49" parent="15" name="username">
       <Position>2</Position>
       <Comment>用户名</Comment>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="51" parent="14" name="password">
+    <column id="50" parent="15" name="password">
       <Position>3</Position>
       <Comment>密码</Comment>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="52" parent="14" name="email">
+    <column id="51" parent="15" name="email">
       <Position>4</Position>
       <Comment>邮箱</Comment>
       <DataType>varchar(30)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="53" parent="14" name="name">
+    <column id="52" parent="15" name="name">
       <Position>5</Position>
       <Comment>姓名</Comment>
       <DataType>varchar(10)|0</DataType>
     </column>
-    <column id="54" parent="14" name="gender">
+    <column id="53" parent="15" name="gender">
       <Position>6</Position>
       <Comment>性别</Comment>
       <DataType>varchar(5)|0</DataType>
     </column>
-    <column id="55" parent="14" name="icon">
+    <column id="54" parent="15" name="icon">
       <Position>7</Position>
       <Comment>头像 有默认头像</Comment>
       <DataType>varchar(100)|0</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;/icon/1509514750962.jpg&apos;</DefaultExpression>
+      <DefaultExpression>&apos;/icon/150951750962.jpg&apos;</DefaultExpression>
     </column>
-    <column id="56" parent="14" name="role">
+    <column id="55" parent="15" name="role">
       <Position>8</Position>
       <Comment>权限信息 默认为0</Comment>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;0&apos;</DefaultExpression>
     </column>
-    <column id="57" parent="14" name="createtime">
+    <column id="56" parent="15" name="createtime">
       <Position>9</Position>
       <Comment>创建日期</Comment>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="14" name="updatetime">
+    <column id="57" parent="15" name="updatetime">
       <Position>10</Position>
       <Comment>修改日期</Comment>
       <DataType>datetime|0</DataType>
     </column>
-    <index id="59" parent="14" name="user_username_uindex">
+    <index id="58" parent="15" name="user_username_uindex">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="60" parent="14" name="PRIMARY">
+    <key id="59" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userid</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="61" parent="14" name="user_username_uindex">
+    <key id="60" parent="15" name="user_username_uindex">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>user_username_uindex</UnderlyingIndexName>
     </key>

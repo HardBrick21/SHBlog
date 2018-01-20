@@ -38,4 +38,12 @@
     <select id="getArticle" resultType="articles" parameterType="_int">
         SELECT * FROM articles WHERE articleid = #{articleid};
     </select>
+
+    <select id="latestId" resultType="java.lang.Integer">
+        SELECT * from articles where articleid ORDER BY pubtime DESC LIMIT 1
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM articles;
+    </select>
+
 </mapper>

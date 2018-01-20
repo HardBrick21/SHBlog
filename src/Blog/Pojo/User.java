@@ -27,6 +27,59 @@ public class User {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date updateTime;
 	
+	private int reviewid;
+	private int articleid;
+	private int reviewuserid;
+	private Date reviewtime;
+	private String reviewcontent;
+	
+	
+	
+	/*------------*/
+	
+	public int getReviewid() {
+		return reviewid;
+	}
+	
+	public void setReviewid(int reviewid) {
+		this.reviewid = reviewid;
+	}
+	
+	public int getArticleid() {
+		return articleid;
+	}
+	
+	public void setArticleid(int articleid) {
+		this.articleid = articleid;
+	}
+	
+	public int getReviewuserid() {
+		return reviewuserid;
+	}
+	
+	public void setReviewuserid(int reviewuserid) {
+		this.reviewuserid = reviewuserid;
+	}
+	
+	public Date getReviewtime() {
+		return reviewtime;
+	}
+	
+	public void setReviewtime(Date reviewtime) {
+		this.reviewtime = reviewtime;
+	}
+	
+
+	
+	public String getReviewcontent() {
+		return reviewcontent;
+	}
+	
+	public void setReviewcontent(String reviewcontent) {
+		this.reviewcontent = reviewcontent;
+	}
+	
+	
 	public int getUserid() {
 		return userid;
 	}

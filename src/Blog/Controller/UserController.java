@@ -7,8 +7,10 @@ package Blog.Controller;
 *  
  */
 
+import Blog.Pojo.Articlereview;
 import Blog.Pojo.Articles;
 import Blog.Pojo.User;
+import Blog.Service.ArticleReviewService;
 import Blog.Service.ArticleService;
 import Blog.Service.ArticleTypeService;
 import Blog.Service.UserService;
@@ -46,6 +48,10 @@ public class UserController {
 	@Qualifier("ArticleTypeService")
 	private ArticleTypeService articleTypeService;
 	
+	@Autowired
+	@Qualifier("ArticleReviewService")
+	private ArticleReviewService articleReviewService;
+	
 	
 	//@RequestMapping(value = "/listUser")
 	//public ModelAndView LisrUser(){
@@ -75,8 +81,16 @@ public class UserController {
 	public String articlePage(Model model, @PathVariable("articleid") int articleid) {
 		List<Articles> articlesType = articleService.listArticleAndType();
 		Articles article = articleService.getArticle(articleid);
+		List<Articlereview> articlereviews = articleReviewService.getArticleReview(articleid);
+		int latest = articleService.getLatest();
+		int count = articleService.count();
 		model.addAttribute("article", article);
 		model.addAttribute("type", articlesType);
+		model.addAttribute("review", articlereviews);
+		model.addAttribute("latest", latest);
+		model.addAttribute("count",count);
+		//System.out.println(articlereviews);
+		
 		return "Front/articlePage";
 	}
 	
@@ -90,6 +104,7 @@ public class UserController {
 		
 		user.setCreateTime(new Date(System.currentTimeMillis()));
 		user.setUpdateTime(new Date(System.currentTimeMillis()));
+		user.setIcon("/icon/1509514750962.jpg");
 		
 		String result = userService.insertUser(user);
 		
@@ -123,14 +138,14 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login(){
+	public String login() {
 		
 		System.out.println("--login--");
 		return "Front/loginPage";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(User user, Model model, String code, HttpSession session){
+	public String login(User user, Model model, String code, HttpSession session) {
 		
 		// 获取存储的验证码
 		String ccode = (String) session.getAttribute("code");
@@ -141,25 +156,53 @@ public class UserController {
 			System.out.println("验证码错误" + ccode + code);
 			return "Front/loginPage";
 		}
-
-		if (userService.isCanLogin(user)){
+		
+		if (userService.isCanLogin(user)) {
 			// 将用户信息放回话到session中
-			
-			session.setAttribute("user", user);
+			User nowUser = userService.getUser(user.getUsername());
+			session.setAttribute("user", nowUser);
 			System.out.println("登陆成功");
 			// 登陆成功 重定向到首页
 			
 			return "redirect:/";
-		}
-		else {
+		} else {
 			// 登陆失败 转发到登陆页面 提示登录失败
 			
 			model.addAttribute("msg", "用户名或密码错误");
 			System.out.println("用户名或密码错误   --username----" +
-					user.getUsername()+"---password---"+user.getPassword());
+					user.getUsername() + "---password---" + user.getPassword());
 			return "Front/loginPage";
 		}
-
+		
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		// 注销 销毁session对象
+		
+		if (session != null) {
+			session.invalidate();
+		}
+		
+		// 重定向到首页
+		
+		return "redirect:/";
+		
+	}
+	
+	@RequestMapping(value = "/review/{articleid}")
+	public String reviewArticle(@PathVariable("articleid") int articleId, HttpSession session, Articlereview articlereview) {
+		User u = (User) session.getAttribute("user");
+		if (u == null) {
+			return "Front/loginPage";
+		}
+		articlereview.setReviewuserid(u.getUserid());
+		articlereview.setReviewtime(new Date(System.currentTimeMillis()));
+		String result = articleReviewService.addArticleReview(articlereview);
+		if (result.equals("success"))
+			return "forward:/article/" + articleId;
+		else
+			return null;
 	}
 	
 	

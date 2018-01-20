@@ -38,5 +38,22 @@ public interface ArticleService {
 	 */
 	void delectArticle(int articleId);
 	
+	/**
+	 * 得到具体文章
+	 * @param aid
+	 * @return
+	 */
 	Articles getArticle(int aid);
+	
+	/**
+	 * 得到最新文章id
+	 * @return
+	 */
+	int getLatest();
+	
+	/**
+	 * 文章数量
+	 * @return
+	 */
+	int count();
 }

@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: Houlixuan
@@ -7,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html>
@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>article</title>
+    <title></title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Resources/i/favicon.png">
@@ -35,17 +35,19 @@
 <body id="blog-article-sidebar">
 <!-- header start -->
 <%--<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">--%>
-    <%--<div class="am-u-sm-8 am-u-sm-centered">--%>
-        <%--<img width="200" src="http://s.amazeui.org/media/i/brand/amazeui-b.png" alt="Amaze UI Logo"/>--%>
-        <%--<h2 class="am-hide-sm-only">中国首个开源 HTML5 跨屏前端框架</h2>--%>
-    <%--</div>--%>
+<%--<div class="am-u-sm-8 am-u-sm-centered">--%>
+<%--<img width="200" src="http://s.amazeui.org/media/i/brand/amazeui-b.png" alt="Amaze UI Logo"/>--%>
+<%--<h2 class="am-hide-sm-only">中国首个开源 HTML5 跨屏前端框架</h2>--%>
+<%--</div>--%>
 <%--</header>--%>
 <!-- header end -->
 <hr>
 
 <!-- nav start -->
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
-    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button"
+            data-am-collapse="{target: '#blog-collapse'}"><span class="am-sr-only">导航切换</span> <span
+            class="am-icon-bars"></span></button>
 
     <div class="am-collapse am-topbar-collapse" id="blog-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav">
@@ -73,11 +75,27 @@
             <li><a href="">心情笔记</a></li>
             <li><a href="">存档</a></li>
         </ul>
-        <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
-            <div class="am-form-group">
-                <%--<input type="text" class="am-form-field am-input-sm" placeholder="搜索">--%>
+        <c:if test="${sessionScope.user != null }">
+            <div class="am-topbar-form am-topbar-right am-form-inline">
+                <div class="am-form-group">
+
+                    <a href="#">${sessionScope.user.username}</a>
+                    <img src="${sessionScope.user.icon}" class="am-circle" style="width: 50px;height: auto">
+                    <a type="button" class="am-btn am-btn-secondary am-btn-sm"
+                       href="${pageContext.request.contextPath}/logout">注销</a>
+                </div>
             </div>
-        </form>
+        </c:if>
+        <c:if test="${sessionScope.user == null }">
+            <div class="am-topbar-form am-topbar-right am-form-inline">
+                <div class="am-form-group">
+                    <a type="button" class="am-btn am-btn-secondary am-btn-sm"
+                       href="${pageContext.request.contextPath}/login">登陆</a>
+                    <a type="button" class="am-btn am-btn-warning am-btn-sm"
+                       href="${pageContext.request.contextPath}/register">注册</a>
+                </div>
+            </div>
+        </c:if>
     </div>
 </nav>
 <!-- nav end -->
@@ -91,7 +109,7 @@
                 <p class="am-article-meta blog-text-center">
                     <span><a href="#" class="blog-color">${type.get(article.articletypeid-1).articletype.typename} &nbsp;</a></span>-
                     <span><a href="#">${article.author} &nbsp;</a></span>-
-                    <span><a href="#"><fmt:formatDate value="${article.pubtime}" pattern="yyyy-MM-dd HH:mm:ss"/></a></span>
+                    <span><a href="#"><fmt:formatDate value="${article.pubtime}"  pattern="yyyy-MM-dd HH:mm:ss"/></a></span>
                 </p>
             </div>
             <div class="am-article-bd">${article.content}</div>
@@ -107,47 +125,117 @@
             </div>
         </div>
 
-        <hr>
-        <div class="am-g blog-author blog-article-margin">
-            <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-                <%--<img src="assets/i/f15.jpg" alt="" class="blog-author-img am-circle">--%>
-            </div>
-            <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
-                <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">${article.author}</span></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
+        <%--作者--%>
+        <%--<div class="am-g blog-author blog-article-margin">--%>
+        <%--<div class="am-u-sm-3 am-u-md-3 am-u-lg-2">--%>
+        <%--&lt;%&ndash;<img src="assets/i/f15.jpg" alt="" class="blog-author-img am-circle">&ndash;%&gt;--%>
+        <%--</div>--%>
+        <%--<div class="am-u-sm-9 am-u-md-9 am-u-lg-10">--%>
+        <%--<h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">${article.author}</span></h3>--%>
+        <%--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>--%>
+        <%--</div>--%>
+        <%--</div>--%>
         <hr>
         <ul class="am-pagination blog-article-margin">
-            <li class="am-pagination-prev"><a href="#" class="">&laquo; 一切的回顾</a></li>
-            <li class="am-pagination-next"><a href="">不远的未来 &raquo;</a></li>
+            <%--<c:if test="${article.articleid == latest-count+1}">--%>
+                <%--<li class="am-pagination-prev am-disabled"><a--%>
+                        <%--href="${pageContext.request.contextPath}/article/${article.articleid}" class="">&laquo;--%>
+                    <%--一切的回顾</a></li>--%>
+                <%--<li class="am-pagination-next"><a--%>
+                        <%--href="${pageContext.request.contextPath}/article/${article.articleid + 1}">不远的未来 &raquo;</a>--%>
+                <%--</li>--%>
+            <%--</c:if>--%>
+            <%--<c:if test="${article.articleid == latest}">--%>
+                <%--<li class="am-pagination-prev"><a--%>
+                        <%--href="${pageContext.request.contextPath}/article/${article.articleid - 1}" class="">&laquo;--%>
+                    <%--一切的回顾</a></li>--%>
+                <%--<li class="am-pagination-next am-disabled"><a--%>
+                        <%--href="${pageContext.request.contextPath}/article/${article.articleid}">不远的未来 &raquo;</a></li>--%>
+            <%--</c:if>--%>
+            <%--<c:if test="${article.articleid != latest-count+1 && article.articleid != latest}">--%>
+                <%--<li class="am-pagination-prev"><a--%>
+                        <%--href="${pageContext.request.contextPath}/article/${article.articleid - 1}" class="">&laquo;--%>
+                    <%--一切的回顾</a></li>--%>
+                <%--<li class="am-pagination-next"><a--%>
+                        <%--href="${pageContext.request.contextPath}/article/${article.articleid + 1}">不远的未来 &raquo;</a>--%>
+                <%--</li>--%>
+            <%--</c:if>--%>
+        <li class="am-pagination-prev"><a
+        href="" class="">&laquo;
+        一切的回顾</a></li>
+        <li class="am-pagination-next"><a
+        href="">不远的未来 &raquo;</a>
+        </li>
+
         </ul>
 
         <hr>
 
-        <form class="am-form am-g">
+        <form class="am-form am-g" action="${pageContext.request.contextPath}/review/${article.articleid}">
             <h3 class="blog-comment">评论</h3>
-            <fieldset>
-                <div class="am-form-group am-u-sm-4 blog-clear-left">
-                    <input type="text" class="" placeholder="名字">
-                </div>
-                <div class="am-form-group am-u-sm-4">
-                    <input type="email" class="" placeholder="邮箱">
-                </div>
+            <c:if test="${sessionScope.user != null }">
+                <fieldset>
+                    <div class="am-form-group">
+                        <div id="toolbar"></div>
+                        <div id="div2" class="text" style="height:100px;max-height:300px; border: 1px solid #ccc;">
+                            <!--可使用 min-height 实现编辑区域自动增加高度-->
+                        </div>
+                        <div style="display:none">
+                            <textarea id="text" name="reviewcontent"></textarea>
+                        </div>
+                    </div>
 
-                <div class="am-form-group am-u-sm-4 blog-clear-right">
-                    <input type="password" class="" placeholder="网站">
-                </div>
 
-                <div class="am-form-group">
-                    <textarea class="" rows="5" placeholder="一字千金"></textarea>
+                    <p>
+                        <button type="submit" class="am-btn am-btn-default am-align-right">发表评论</button>
+                    </p>
+                </fieldset>
+            </c:if>
+            <c:if test="${sessionScope.user == null }">
+                <div class="am-form-group am-text-center">
+                    <p>
+                    <h2>您还没有登陆请 <a href="${pageContext.request.contextPath}/login">登陆</a></h2></p>
                 </div>
-
-                <p><button type="submit" class="am-btn am-btn-default">发表评论</button></p>
-            </fieldset>
+            </c:if>
         </form>
 
         <hr>
+        <h3 class="blog-comment">全部评论</h3>
+
+        <ul class="am-comments-list am-comments-list-flip">
+            <c:if test="${review.size()==0}">
+                <p class="am-text-center">还没有评论呢</p>
+            </c:if>
+            <c:forEach  items="${review}" var="review">
+                <li class="am-comment">
+                    <article class="am-comment">
+                        <a href="#">
+                            <img src="${review.icon}" alt="无" class="am-comment-avatar" width="48" height="48"/>
+                        </a>
+
+                        <div class="am-comment-main">
+                            <header class="am-comment-hd">
+                                <!--<h3 class="am-comment-title">评论标题</h3>-->
+                                <div class="am-comment-meta">
+                                    <a href="#" class="am-comment-author">${review.username}</a>
+                                    评论于
+                                    <time datetime="<fmt:formatDate value="${review.reviewtime}"  pattern="yyyy-MM-dd HH:mm:ss"/>" title="">
+                                        <fmt:formatDate value="${review.reviewtime}"  pattern="yyyy-MM-dd HH:mm:ss"/>
+                                    </time>
+                                </div>
+                            </header>
+
+                            <div class="am-comment-bd">
+                              ${review.reviewcontent}
+                            </div>
+                        </div>
+                    </article>
+                </li>
+            </c:forEach>
+            <hr>
+
+        </ul>
+
     </div>
 
     <div class="am-u-md-4 am-u-sm-12 blog-sidebar">
@@ -203,5 +291,33 @@
 <!--<![endif]-->
 <script src="${pageContext.request.contextPath}/Resources/js/amazeui.min.js"></script>
 <!-- <script src="assets/js/app.js"></script> -->
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/Resources/Adminassets/wang/wangEditor.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#toolbar', '#div2')
+    //var editor = new E( document.getElementById('#editor') )
+    var $text1 = $('#text')
+
+    editor.customConfig.onchange = function (html) {
+// 监控变化，同步更新到 textarea
+        $text1.val(html)
+    }
+    editor.customConfig.menus = [
+        'bold',
+        'italic',
+        'underline',
+        'foreColor',  // 文字颜色
+        'link',  // 插入链接
+        'emoticon',  // 表情
+        'code',  // 插入代码
+        'image',  // 插入图片
+        'undo',  // 撤销
+    ]
+    editor.create()
+
+    // 初始化 textarea 的值
+    $text1.val(editor.txt.html())
+</script>
 </body>
 </html>

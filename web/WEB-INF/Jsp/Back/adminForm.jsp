@@ -14,17 +14,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Amaze UI Admin index Examples</title>
-    <meta name="description" content="这是一个 index 页面">
     <meta name="keywords" content="index">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Resources/Adminassets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="${pageContext.request.contextPath}/Resources/Adminassets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="apple-touch-icon-precomposed"
+          href="${pageContext.request.contextPath}/Resources/Adminassets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <script src="${pageContext.request.contextPath}/Resources/Adminassets/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/Adminassets/css/amazeui.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/Adminassets/css/amazeui.datatables.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/Adminassets/css/amazeui.min.css"/>
+    <link rel="stylesheet"
+          href="${pageContext.request.contextPath}/Resources/Adminassets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Resources/Adminassets/css/app.css">
     <script src="${pageContext.request.contextPath}/Resources/Adminassets/js/jquery.min.js"></script>
 
@@ -175,7 +175,9 @@
         <div class="container-fluid am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
-                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 发布文章 <small>Publish Article</small></div>
+                    <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 发布文章
+                        <small>Publish Article</small>
+                    </div>
                 </div>
             </div>
         </div>
@@ -194,27 +196,33 @@
                         </div>
                         <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-border-form tpl-form-border-br" action="${pageContext.request.contextPath}/admin/upload" method="post" enctype="multipart/form-data">
+                            <form class="am-form tpl-form-border-form tpl-form-border-br"
+                                  action="${pageContext.request.contextPath}/admin/upload" method="post"
+                                  enctype="multipart/form-data">
                                 <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                                    <label for="user-name" class="am-u-sm-3 am-form-label">标题 <span
+                                            class="tpl-form-line-small-title">Title</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字" name="articletitle" required>
+                                        <input type="text" class="tpl-form-input" id="user-name" placeholder="请输入标题文字"
+                                               name="articletitle" required>
                                         <small>请填写标题文字10-20字左右。</small>
                                     </div>
                                 </div>
 
                                 <%--<div class="am-form-group">--%>
-                                    <%--<label for="date" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>--%>
-                                    <%--<div class="am-u-sm-9">--%>
-                                        <%--<input type="text" id="date" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly="">--%>
-                                        <%--<small>发布时间为必填</small>--%>
-                                    <%--</div>--%>
+                                <%--<label for="date" class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>--%>
+                                <%--<div class="am-u-sm-9">--%>
+                                <%--<input type="text" id="date" class="am-form-field tpl-form-no-bg" placeholder="发布时间" data-am-datepicker="" readonly="">--%>
+                                <%--<small>发布时间为必填</small>--%>
+                                <%--</div>--%>
                                 <%--</div>--%>
 
                                 <div class="am-form-group">
-                                    <label for="author" class="am-u-sm-3 am-form-label">作者 <span class="tpl-form-line-small-title">Author</span></label>
+                                    <label for="author" class="am-u-sm-3 am-form-label">作者 <span
+                                            class="tpl-form-line-small-title">Author</span></label>
                                     <div class="am-u-sm-9">
-                                        <select id="author" name="author" data-am-selected="{searchBox: 1}" style="display: none;">
+                                        <select id="author" name="author" data-am-selected="{searchBox: 1}"
+                                                style="display: none;">
                                             <option value="HardBrick">HardBrick</option>
                                             <option value="转载">转载</option>
                                             <option value="佚名">佚名</option>
@@ -226,7 +234,8 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">文章类型 <span class="tpl-form-line-small-title">Type</span></label>
                                     <div class="am-u-sm-9">
-                                        <select id="type" name="articletypeid" data-am-selected="{searchBox: 1}" style="display: none;">
+                                        <select id="type" name="articletypeid" data-am-selected="{searchBox: 1}"
+                                                style="display: none;">
                                             <c:forEach items="${types}" var="type">
                                                 <option value="${type.typeid}">${type.typename}</option>
                                             </c:forEach>
@@ -235,11 +244,13 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">封面图 <span
+                                            class="tpl-form-line-small-title">Images</span></label>
                                     <div class="am-u-sm-9">
                                         <div class="am-form-group am-form-file">
                                             <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                                <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
+                                                <i class="am-icon-cloud-upload"></i> 添加封面图片
+                                            </button>
                                             <input id="doc-form-file" type="file" multiple="" name="file">
                                         </div>
 
@@ -247,7 +258,8 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">添加标签 <span class="tpl-form-line-small-title">Tags</span></label>
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">添加标签 <span
+                                            class="tpl-form-line-small-title">Tags</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" id="user-weibo" placeholder="请添加分类用点号隔开">
                                         <div>
@@ -256,7 +268,8 @@
                                     </div>
                                 </div>
                                 <div class="am-form-group">
-                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">简介 <span class="tpl-form-line-small-title">Intro</span></label>
+                                    <label for="user-weibo" class="am-u-sm-3 am-form-label">简介 <span
+                                            class="tpl-form-line-small-title">Intro </span></label>
                                     <div class="am-u-sm-9">
                                         <textarea required name="intro" style="width:100%;height: 100px;"></textarea>
                                         <div>
@@ -269,7 +282,8 @@
                                     <label class="am-u-sm-3 am-form-label">是否转载</label>
                                     <div class="am-u-sm-9">
                                         <div class="tpl-switch">
-                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" value="1" name="isreprint">
+                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn" value="1"
+                                                   name="isreprint">
                                             <div class="tpl-switch-btn-view" checked="0">
                                                 <div>
                                                 </div>
@@ -280,15 +294,15 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">文章内容</label>
-                                    <div class="am-u-sm-9" id="#editor">
+                                    <textarea name="content" id="editor1" >
 
-                                    </div>
+                                    </textarea>
                                 </div>
-                                <textarea  id="text" style="width:100%;" name="content"></textarea>
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">
+                                            提交
+                                        </button>
                                     </div>
                                 </div>
 
@@ -305,65 +319,11 @@
 <script src="${pageContext.request.contextPath}/Resources/Adminassets/js/amazeui.datatables.min.js"></script>
 <script src="${pageContext.request.contextPath}/Resources/Adminassets/js/dataTables.responsive.min.js"></script>
 <script src="${pageContext.request.contextPath}/Resources/Adminassets/js/app.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/Resources/Adminassets/wang/wangEditor.min.js"></script>
+<script src="${pageContext.request.contextPath}/Resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-    var E = window.wangEditor
-    //var editor = new E('#editor')
-    var editor = new E( document.getElementById('#editor') )
-    var $text1 = $('#text')
-    editor.customConfig.onchange = function (html) {
-        // 监控变化，同步更新到 textarea
-        $text1.val(html)
-    }
-//    editor.customConfig.uploadImgShowBase64 = true
-    editor.customConfig.uploadFileName = 'image'
-    editor.customConfig.uploadImgHeaders = {
-
-        'Accept' : 'multipart/form-data'
-
-    };
-    editor.customConfig.uploadImgServer = '${pageContext.request.contextPath}/admin/pic'
-    editor.customConfig.uploadImgMaxSize = 20 * 1024 * 1024;//设置图片大小为20M
-    editor.customConfig.uploadImgTimeout = 1000000; //图片上传超时限制10s
-    editor.customConfig.uploadImgHooks = {
-        before: function (xhr, editor, files) {
-            // 图片上传之前触发
-            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，files 是选择的图片文件
-
-            // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
-            // return {
-            //     prevent: true,
-            //     msg: '放弃上传'
-            // }
-        },
-        success: function (xhr, editor, result) {
-            // 图片上传并返回结果，图片插入成功之后触发
-            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-            //alert("success")
-        },
-        fail: function (xhr, editor, result) {
-            // 图片上传并返回结果，但图片插入错误时触发
-            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象，result 是服务器端返回的结果
-        },
-        error: function (xhr, editor) {
-            // 图片上传出错时触发
-            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
-            alert("2:" + xhr)
-        },
-        timeout: function (xhr, editor) {
-            // 图片上传超时时触发
-            // xhr 是 XMLHttpRequst 对象，editor 是编辑器对象
-        },
-
-        // 如果服务器端返回的不是 {errno:0, data: [...]} 这种格式，可使用该配置
-        // （但是，服务器端返回的必须是一个 JSON 格式字符串！！！否则会报错）
-    };
-
-
-    editor.customConfig.debug = location.href.indexOf('wangeditor_debug_mode=1') > 0
-    editor.create()
-    // 初始化 textarea 的值
-    $text1.val(editor.txt.html())
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace( 'editor1' );
 </script>
 </body>
 

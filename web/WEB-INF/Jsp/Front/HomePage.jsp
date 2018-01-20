@@ -12,9 +12,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, User-scalable=no">
     <title>SHBLOG</title>
     <meta name="renderer" content="webkit">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/Resources/i/favicon.png">
@@ -32,13 +29,8 @@
 
 <body id="blog">
 
-<%--<header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">--%>
-    <%--<div class="am-u-sm-8 am-u-sm-centered">--%>
-        <%--<img width="200" src="http://s.amazeui.org/media/i/brand/amazeui-b.png" alt="Amaze UI Logo"/>--%>
-        <%--<h2 class="am-hide-sm-only">中国首个开源 HTML5 跨屏前端框架</h2>--%>
-    <%--</div>--%>
-<%--</header>--%>
-<hr>
+<nav class="am-g am-g-fixed blog-fixed blog-nav">
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only blog-button" data-am-collapse="{target: '#blog-collapse'}" ><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 <nav class="am-g am-g-fixed blog-fixed blog-nav">
     <div class="am-collapse am-topbar-collapse" id="blog-collapse">
         <ul class="am-nav am-nav-pills am-topbar-nav">
@@ -66,28 +58,38 @@
             <li><a href="">心情笔记</a></li>
             <li><a href="">存档</a></li>
         </ul>
-        <div class="am-topbar-form am-topbar-right am-form-inline" >
-            <div class="am-form-group">
-                <a type="button" class="am-btn am-btn-secondary am-btn-sm"  href="/login">登陆</a>
-                <a type="button" class="am-btn am-btn-warning am-btn-sm"  href="/register">注册</a>
+
+        <c:if test="${sessionScope.user != null }">
+            <div class="am-topbar-form am-topbar-right am-form-inline" >
+                <div class="am-form-group">
+                    <a href="#">${sessionScope.user.username}</a>
+                    <img src="${sessionScope.user.icon}" class="am-circle" style="width: 50px;height: auto">
+                    <a type="button" class="am-btn am-btn-secondary am-btn-sm"  href="${pageContext.request.contextPath}/logout">注销</a>
+                </div>
             </div>
-        </div>
+        </c:if>
+        <c:if test="${sessionScope.user == null }">
+            <div class="am-topbar-form am-topbar-right am-form-inline" >
+                <div class="am-form-group">
+                    <a type="button" class="am-btn am-btn-secondary am-btn-sm"  href="${pageContext.request.contextPath}/login">登陆</a>
+                    <a type="button" class="am-btn am-btn-warning am-btn-sm"  href="${pageContext.request.contextPath}/register">注册</a>
+                </div>
+            </div>
+        </c:if>
 
-        <div class="">
 
-        </div>
-    </div>
+    </div><hr>
 </nav>
-<hr>
+
 
 
 <!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed">
     <div class="am-u-md-8 am-u-sm-12">
     <c:forEach items="${article}" var="articles">
-        <div class="am-g blog-entry-article" data-am-scrollspy="{animation: 'slide-left'}">
+        <div class="am-g blog-entry-article" data-am-scrollspy="{animation: 'slide-left', repeat: false }">
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${articles.thumbnail}" alt="" class="am-u-sm-12">
+                <img src="${articles.thumbnail}" alt="" class="am-u-sm-12"  style="height: 180px;">
             </div>
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">${type.get(articles.articletypeid-1).articletype.typename} &nbsp;</a></span>
@@ -100,110 +102,6 @@
             </div>
         </div>
     </c:forEach>
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article &nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">总在思考一句积极的话</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f6.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span>@amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">选择的正确性</a></h1>
-                <p>你可以选择在原处不停地跟周遭不解的人解释你为何这么做，让他们理解你，你可以选择什么都不讲，自顾自往前走。
-                </p>
-                <p><a href="" class="blog-continue">continue</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f12.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span>@amazeUI</span>
-                <span>2015/10/9</span>
-                <h1><a href="">开心时拥抱全世界</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f13.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span>@amazeUI</span>
-                <span>2015/10/9</span>
-                <h1><a href="">总以为机会无限</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">GIVE ME SOME BIG TEXT AND FONT </a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">taha cool man i do believe</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="${pageContext.request.contextPath}/Resources/i/f10.jpg" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article&nbsp;</a></span>
-                <span> @amazeUI &nbsp;</span>
-                <span>2015/10/9</span>
-                <h1><a href="">taha cool man i do believe</a></h1>
-                <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
 
         <ul class="am-pagination">
             <li class="am-pagination-prev"><a href="">&laquo; Prev</a></li>
@@ -220,10 +118,9 @@
         <div class="blog-sidebar-widget blog-bor">
             <h2 class="blog-text-center blog-title"><span>Contact ME</span></h2>
             <p>
-                <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
-                <a href=""><span class="am-icon-github am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
-                <a href=""><span class="am-icon-reddit am-icon-fw blog-icon"></span></a>
+                <a href="" title="2436412915"><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
+                <a href="https://github.com/HardBrick21" target="_blank"><span class="am-icon-github am-icon-fw blog-icon"></span></a>
+                <a href="https://weibo.com/hlxzzx001/" target="_blank"><span class="am-icon-weibo am-icon-fw blog-icon"></span></a>
                 <a href=""><span class="am-icon-weixin am-icon-fw blog-icon"></span></a>
             </p>
         </div>
@@ -235,7 +132,6 @@
                 <a href="" class="blog-tag">HTML5</a>
                 <a href="" class="blog-tag">这是标签</a>
                 <a href="" class="blog-tag">Impossible</a>
-                <a href="" class="blog-tag">开源前端框架</a>
             </div>
         </div>
         <div class="blog-sidebar-widget blog-bor">
@@ -244,7 +140,7 @@
                 <li><a href="#">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
                 <li><a href="#">我把最深沉的秘密放在那里。</a></li>
                 <li><a href="#">你不懂我，我不怪你。</a></li>
-                <li><a href="#">每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</a></li>
+                <li><a href="#">这里不知道放啥</a></li>
             </ul>
         </div>
     </div>
@@ -266,6 +162,8 @@
 
 <script src="${pageContext.request.contextPath}/Resources/js/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/Resources/js/amazeui.min.js"></script>
+
+
 
 </body>
 </html>

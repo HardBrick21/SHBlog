@@ -7,23 +7,24 @@ package Blog.Controller;
 *  
  */
 
+import Blog.Convert.imageUtil;
 import Blog.Pojo.Articles;
 import Blog.Pojo.Articletype;
 import Blog.Service.ArticleService;
 import Blog.Service.ArticleTypeService;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -74,7 +75,7 @@ public class AdminController {
 			String picname = System.currentTimeMillis() + name.substring(name.lastIndexOf("."));
 			System.out.println(picname);
 			//String basepath = System.getProperty("file.separator")+"Resources"+System.getProperty("file.separator")+"icon"+System.getProperty("file.separator");
-			String basepath = "e:\\icon\\";
+			String basepath = request.getSession().getServletContext().getRealPath("/Resources/icon/");
 			File picfile = new File(basepath + picname);
 			if (!picfile.exists())
 				picfile.mkdirs();
@@ -83,7 +84,7 @@ public class AdminController {
 			//将传递来的文件写入到文件中
 			
 			file.transferTo(picfile);
-			articles.setThumbnail("/icon/" + picname);
+			articles.setThumbnail("/Resources/icon/" + picname);
 		}
 		String result = articleService.uploadArticle(articles);
 		
@@ -97,44 +98,16 @@ public class AdminController {
 		
 	}
 	
-	@RequestMapping(value = "/pic")
-	@ResponseBody
-	public String uploadImgToOSS(HttpServletRequest request, HttpServletResponse response, @RequestParam("image") MultipartFile file) throws IOException {
-		
-		String name = file.getOriginalFilename();
-		String picname = System.currentTimeMillis() + name.substring(name.lastIndexOf("."));
-		System.out.println(picname);
-		//String basepath = System.getProperty("file.separator")+"Resources"+System.getProperty("file.separator")+"icon"+System.getProperty("file.separator");
-		String basepath = "e:\\icon\\";
-		File picfile = new File(basepath + picname);
-		if (!picfile.exists())
-			picfile.mkdirs();
-		
-		System.out.println(picfile);
-		//将传递来的文件写入到文件中
-		
-		file.transferTo(picfile);
-		
-		String data = "http://localhost:8080/icon/"+picname;
-		//Map<String, Object> map = new HashMap<String, Object>();
-		//map.put("errno", 0);
-		//map.put("data",data);
-		//System.out.println(map.toString());
-		//ObjectMapper json = new ObjectMapper();
-		//String param = json.writeValueAsString(map);
-		//System.out.println(param);
-		JSONObject jsonObject = new JSONObject();
-		//JSONArray jsonArray = new JSONArray();
-		//jsonArray.add(data);
-		//
-		jsonObject.put("errno", 0);
-		jsonObject.put("data", data);
-		System.out.println(jsonObject);
-		
-		String result = jsonObject.toString();
-		System.out.println(result);
-		return result;
-		
+	@RequestMapping(value = "/pic", method = RequestMethod.POST)
+	public void imageUpload(HttpServletRequest request, HttpServletResponse response) {
+		String DirectoryName = "image";
+		try {
+			imageUtil.ckeditor(request, response, DirectoryName);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping("/articlelist")

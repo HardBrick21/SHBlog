@@ -38,5 +38,6 @@
     <orderEntry type="library" name="org.thymeleaf:thymeleaf:Release" level="project" />
     <orderEntry type="library" name="file" level="project" />
     <orderEntry type="library" name="aliyun" level="project" />
+    <orderEntry type="library" name="ueditor-mini" level="project" />
   </component>
 </module>

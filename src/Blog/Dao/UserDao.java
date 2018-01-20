@@ -46,4 +46,5 @@ public interface UserDao {
 	User getUser(String username);
 	
 	int insertUser(User user);
+	
 }

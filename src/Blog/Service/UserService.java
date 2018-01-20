@@ -38,4 +38,12 @@ public interface UserService {
 	 * @return
 	 */
 	boolean isCanLogin(User user);
+	
+	/**
+	 * 根据用户名获得用户
+	 * @param username
+	 * @return
+	 */
+	User getUser(String username);
+	
 }

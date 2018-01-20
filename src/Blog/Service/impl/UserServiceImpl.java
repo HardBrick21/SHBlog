@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String insertUser(User user) {
 		
-		if (user.getUsername().equals(userDao.getUser(user.getUsername()).getUsername())) {
+		if (userDao.getUser(user.getUsername())!=null) {
 			return "用户名已被注册";
 		} else {
 			userDao.inserUser(user);
@@ -56,5 +56,10 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}
 	}
+	
+	public User getUser(String username){
+		return userDao.getUser(username);
+	}
+	
 	
 }

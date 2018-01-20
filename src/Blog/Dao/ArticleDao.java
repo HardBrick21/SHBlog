@@ -44,4 +44,16 @@ public interface ArticleDao {
 	 * @return
 	 */
 	Articles getArticle(int articleid);
+	
+	/**
+	 * 返回最新的文章id
+	 * @return
+	 */
+	int latestId();
+	
+	/**
+	 * 文章数量
+	 * @return
+	 */
+	int count();
 }

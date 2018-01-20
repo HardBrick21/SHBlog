@@ -5,7 +5,7 @@
 
 <mapper namespace="Blog.Dao.UserDao">
 
-    <insert id="inserUser" parameterType="User" >
+    <insert id="inserUser" parameterType="User">
         INSERT INTO user (username, password, email,  createtime, updatetime)
         VALUES (#{username}, #{password}, #{email}, #{createTime}, #{updateTime})
     </insert>
@@ -25,7 +25,7 @@
           select * from user where username = #{username}
     </select>
 
-    <insert id="insertUser" parameterType="User" >
+    <insert id="insertUser" parameterType="User">
         INSERT INTO user (username, password, email,  createtime, updatetime)
         VALUES (#{username}, #{password}, #{email}, #{createTime}, #{updateTime})
     </insert>

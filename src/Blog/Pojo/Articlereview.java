@@ -8,13 +8,21 @@ package Blog.Pojo;
  */
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Articlereview {
+	
+	//-----
+	private String username;
+	private String icon;
+	//----
 	private int reviewid;
 	private int articleid;
 	private int reviewuserid;
 	private String reviewcontent;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date reviewtime;
 	
 	public int getReviewid() {
@@ -55,6 +63,22 @@ public class Articlereview {
 	
 	public void setReviewtime(Date reviewtime) {
 		this.reviewtime = reviewtime;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 	
 	@Override
